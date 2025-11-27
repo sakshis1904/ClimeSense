@@ -1,57 +1,46 @@
 const axios = require('axios');
 
-const data = {};
-
 async function FetchAPIdata(city) {
   const options = {
     method: 'GET',
     url: 'https://weatherapi-com.p.rapidapi.com/current.json',
     params: { q: city },
     headers: {
-      'X-RapidAPI-Key': 'a2b8cee08fmshf8ce534fdf59941p1031e5jsn95fae70bda7a',
-      'X-RapidAPI-Key': 'Enter your API-KEY',
-
+      'X-RapidAPI-Key': 'a2b8cee08fmshf8ce534fdf59941p1031e5jsn95fae70bda7a',  // <-- USE ONLY THIS KEY
       'X-RapidAPI-Host': 'weatherapi-com.p.rapidapi.com'
     }
   };
 
   try {
     const response = await axios.request(options);
+    const current = response.data.current;
+    const location = response.data.location;
 
-    console.log(response)
+    // return a NEW fresh object
+    return {
+      Cloud: current.cloud,
+      Time: location.localtime,
+      UV: current.uv,
+      Temp: current.temp_c,
+      FeelsLike: current.feelslike_c,
+      Wind: current.wind_mph,
+      Pressure: current.pressure_mb,
+      Visibility: current.vis_km,
+      Gust: current.gust_mph,
+      Location: `${location.name}, ${location.region}, ${location.country}`,
+      Longitude: location.lon,
+      Latitude: location.lat,
+      WindDeg: current.wind_degree,
+      WindDir: current.wind_dir,
+      Precipitation: current.precip_in,
+      Localtime: location.localtime,
+      Humidity: current.humidity
+    };
 
-    data.Cloud = response.data.current.cloud
-    data.Time = response.data.location.localtime
-    data.UV = response.data.current.uv;
-    data.Temp = response.data.current.temp_c;
-    data.FeelsLike = response.data.current.feelslike_c;
-    data.Wind = response.data.current.wind_mph;
-    data.Pressure = response.data.current.pressure_mb;
-    data.Visibility = response.data.current.vis_km;
-    data.Gust = response.data.current.gust_mph;
-    data.Location = response.data.location.name + ', ' + response.data.location.region + ', ' +  response.data.location.country 
-    data.Longitude = response.data.location.lat;;
-    data.Latitude = response.data.location.lon;;
-    data.WindDeg = response.data.current.wind_degree;
-    data.WindDir = response.data.current.wind_dir;
-    data.Precipitation = response.data.current.precip_in;
-    data.Localtime = response.data.location.localtime;
-    data.UV = response.data.current.uv;
-    data.Humidity = response.data.current.humidity;
-
-
-
-
-
-    return data
   } catch (error) {
-    console.error(error);
+    console.error("Weather API ERROR:", error.response?.data || error.message);
+    return null;
   }
 }
-
-// (async () => {
-//   let a = await FetchAPIdata('New York, Canada');
-//   console.log('hi', a);
-// })();
 
 module.exports = { FetchAPIdata };

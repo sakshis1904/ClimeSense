@@ -17,8 +17,9 @@ export default function WindGraph(props) {
         endAngle: 130,
 
         track: {
-          background: '#fff',
-          strokeWidth: '10%',
+          background: 'rgba(255,255,255,0.08)',
+          strokeWidth: '18%',
+          margin: 6
         },
         dataLabels: {
           show: false,
@@ -26,23 +27,26 @@ export default function WindGraph(props) {
       },
     },
     fill: {
-      type: 'pattern',
-      colors: ['orange'],
-      pattern: {
-        style: 'slantedLines',
-        width: 10,
-        height: 1,
-        strokeWidth: 1,
-      },
+      type: 'gradient',
+      gradient: {
+        shade: 'light',
+        type: 'horizontal',
+        shadeIntensity: 0.5,
+        gradientToColors: ['#ffb36b'],
+        inverseColors: false,
+        opacityFrom: 0.95,
+        opacityTo: 0.95,
+        stops: [0, 100]
+      }
     },
     labels: ['Humidity'],
   };
 
   return (
-    <div id="chart">
+    <div id="chart" className="card glass fade-in card-float" style={{ padding: '0.5rem' }}>
       <ReactApexChart options={options} series={series} type="radialBar" />
       <div className="chart-labels">
-        <div className="chart-label chart-label-small" style={{ backgroundColor: 'orange', color: 'white', marginBottom: '1%' }}>Humidity</div>
+        <div className="chart-label chart-label-small" style={{ backgroundColor: 'var(--accent)', color: '#073b4c', marginBottom: '1%' }}>Humidity</div>
         {/* <div className="chart-label chart-label-small" style={{ backgroundColor: 'blue', color: 'white' }}>Chances of Rain</div> */}
       </div>
     </div>

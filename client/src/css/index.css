@@ -1,10 +1,26 @@
 
 
+:root{
+  /* ClimeSense theme colors */
+  --bg-very-light: #f6fbff;
+  --bg-light: #e9f6ff;
+  --sky-blue: #4aa3ff;
+  --deep-sky: #0b5fa8;
+  --accent: #ffb74d; /* warm accent for buttons */
+  --card-bg: linear-gradient(135deg,#073b4c 0%, #075985 100%);
+  --muted: #99b3c6;
+  --glass: rgba(255,255,255,0.08);
+  --success: #2fd275;
+  --danger: #ff6b6b;
+  --text-dark: #012d3a;
+  --card-radius: 18px;
+}
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: Inter, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  color: var(--text-dark);
+  background: radial-gradient( circle at 10% 10%, rgba(74,163,255,0.08), transparent 10% ), linear-gradient(180deg, var(--bg-very-light) 0%, var(--bg-light) 100%);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -13,3 +29,57 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+/* Utility helpers used throughout */
+.container { max-width: 1200px; margin: 0 auto; padding: 1.25rem; }
+.card { background: var(--card-bg); color: white; border-radius: var(--card-radius); padding: 1rem; box-shadow: 0 12px 30px rgba(3,22,45,0.25); }
+.btn { background: var(--accent); color: #073b4c; padding: 0.6rem 1rem; border-radius: 12px; border: none; cursor: pointer; font-weight: 700; }
+.btn-outline { background: transparent; border: 1px solid rgba(255,255,255,0.12); color: white }
+.muted { color: var(--muted); }
+.glass { background: var(--glass); backdrop-filter: blur(6px); border-radius: 12px; }
+
+/* responsive */
+@media (max-width: 900px) {.container{ padding:1rem } }
+
+/* --- Animations & micro-interactions --- */
+:root{
+  --anim-ease: cubic-bezier(.2,.9,.2,1);
+}
+
+.fade-in { animation: fadeIn .6s var(--anim-ease) both; }
+.slide-up { animation: slideUp .6s var(--anim-ease) both; }
+.float { animation: floaty 6s ease-in-out infinite; }
+.pulse { animation: pulse 1.8s infinite ease-in-out; }
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes floaty {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-6px); }
+  100% { transform: translateY(0px); }
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); opacity: 1 }
+  50% { transform: scale(1.02); opacity: 0.95 }
+  100% { transform: scale(1); opacity: 1 }
+}
+
+/* subtle focus ring for inputs */
+.focus-ring:focus { box-shadow: 0 8px 30px rgba(11,95,168,0.14); border-color: rgba(11,95,168,0.25) }
+
+/* small helper to stagger children with css vars */
+.stagger > * { opacity: 0; transform: translateY(10px); animation: fadeIn .6s var(--anim-ease) forwards; }
+.stagger > *:nth-child(1){ animation-delay:.06s }
+.stagger > *:nth-child(2){ animation-delay:.12s }
+.stagger > *:nth-child(3){ animation-delay:.18s }
+.stagger > *:nth-child(4){ animation-delay:.24s }
+

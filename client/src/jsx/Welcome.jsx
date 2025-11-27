@@ -14,15 +14,17 @@ export default function LoadWelcome() {
       <div className="background">
         <div className="Welcome-section">
           <div className="welcome-empty-section">
-            < WiDaySnowWind className="WeatherIcon" />
+            < WiDaySnowWind className="WeatherIcon float" />
+            <span className="big-cloud">☁️</span>
 
           </div>
           <div className="Welcome-heading">
-            <div className="heading"> Welcome to Weather<span style={{ color: 'White' }}>Sense</span></div>
+            <div className="hero-cloud float" aria-hidden="true"></div>
+            <div className="heading"> Welcome to Clime<span style={{ color: 'White' }}>Sense</span></div>
 
             
             <Link to="/login">
-              <button className="Welcome-button">Load Dashboard</button>
+              <button className="Welcome-button slide-up">Load Dashboard</button>
             </Link>
 
           </div>

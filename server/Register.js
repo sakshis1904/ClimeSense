@@ -1,37 +1,29 @@
-const { MongoClient } = require("mongodb");
-
-const url = "Enter your MongoDB url";
-const client = new MongoClient(url);
+// Register.js
+const bcrypt = require("bcrypt");
+const { getDB } = require("./db");
 
 async function RegisterCred(Username, Password, Name, City) {
-    try {
-        await client.connect();
+  const db = await getDB();
+  const col = db.collection("LoginAuthentication");
 
-        const db = client.db('WeatherSenseDB');
-        const col = db.collection('LoginAuthentication');
+  // Check only by email (Username)
+  const existingUser = await col.findOne({ Username });
+  if (existingUser) {
+    return 1; // user exists
+  }
 
-        const query = { 'Username': Username, 'Password': Password, 'Name': Name, 'City': City };
-        const result = await col.findOne(query);
+  // Hash password
+  const hashed = await bcrypt.hash(Password, 10);
 
-    
-        if (result) {
-            return 1;
-        } else {
-            const result = await col.insertOne(query);
-            if (result) {
-                return 2;
-            } else {
-                return 0
-            }
-        }
-    }
-    finally {
-        await client.close();
-    }
+  const insertRes = await col.insertOne({
+    Username,
+    Password: hashed,
+    Name,
+    City,
+    createdAt: new Date()
+  });
 
+  return insertRes.insertedId ? 2 : 0;
 }
 
-
 module.exports = { RegisterCred };
-
-

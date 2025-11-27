@@ -1,42 +1,14 @@
-const { MongoClient } = require("mongodb");
-
-const url = "Enter your MongoDB url";
-const client = new MongoClient(url);
+// activeUser.js
+const { getDB } = require("./db");
 
 async function ActiveUserDetails() {
-  let client;
-  try {
-    client = new MongoClient(url);
-    await client.connect();
+  const db = await getDB();
+  const col = db.collection("ActiveUsers");
 
-    const db = client.db('WeatherSenseDB');
-    const col = db.collection('ActiveUsers');
-
-    // const options = {
-    //   sort: { timestamp: -1 } // Sort documents in descending order based on the "timestamp" field
-    // };
-
-    const result = await col.find({}).toArray();
-    delete result._id;
-
-    if (result) {
-      return result[result.length - 1];
-    } else {
-      return 0;
-    }
-  } catch (error) {
-    console.error('Error retrieving active user details:', error);
-    throw error; // Rethrow the error to be handled by the caller
-  } finally {
-    if (client) {
-      await client.close();
-    }
-  }
+  // return the most recent active user
+  const docs = await col.find().sort({ timestamp: -1 }).limit(1).toArray();
+  if (!docs || docs.length === 0) return null;
+  return docs[0];
 }
 
 module.exports = { ActiveUserDetails };
-
-// (async () => {
-//   const a = await ActiveUserDetails();
-//   console.log(a);
-// })();

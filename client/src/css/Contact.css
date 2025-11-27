@@ -1,0 +1,9 @@
+/* Contact page styles */
+.contact-page { min-height: calc(100vh - 72px); padding-top: 92px; display:flex; justify-content:center; align-items:flex-start }
+.contact-card { width: min(760px, 92%); background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02)); border-radius: 12px; padding: 1.6rem; box-shadow: 0 12px 36px rgba(3,22,45,0.15); color: #eaf6ff }
+.contact-card h2 { color: var(--deep-sky); margin: 0 0 .8rem 0 }
+.contact-list { display:flex; flex-direction:column; gap: .8rem }
+.contact-list a { color: var(--deep-sky); font-weight:700 }
+.contact-details { color: var(--deep-sky); font-size: .98rem }
+
+@media (max-width:700px){ .contact-card{ width:92%; padding:1rem } }

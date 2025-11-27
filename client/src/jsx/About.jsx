@@ -1,20 +1,24 @@
 import React from 'react';
+import '../css/About.css';
 
 function About() {
-	return <div>
-		<center><h1  style={{fontSize: '3.5vw'}}>Weather Sense</h1></center>
+	return (
+		<div className="about-page">
+			<div className="about-card fade-in container">
+				<h1>ClimeSense</h1>
+				<p>
+					  ClimeSense is a smart weather monitoring application built using the MERN stack, allowing users to register, log in securely using JWT authentication, and instantly view weather metrics for their selected city.
 
-		<a style={{fontSize: '2vw'}}><center> 			
-			This is a full-stack project developed using MERN Stack (MongoDB, ExpressJS, React & Nodejs) <br></br>
-			that fetches Weather API to display weather parameters like Humidity, UV index etc at frontend. 
-			
-			<br></br><br></br>MongoDB database at the backend stores user details like Name, Email, Password & 
-			<br></br>City to display user specific details <br></br>
+The app integrates a live weather API to provide real-time details like temperature, humidity, wind speed, pressure, UV index, cloud percentage, visibility, etc.
+It also features a clean and animated UI for enhanced user experience.
 
-			<br></br>ExpressJS & NodeJs at the backend connects React framework with database and makes <br></br>  API requests for fetching data
-		</center>
+This project was developed as part of the Weather App Track, with added bonus features like authentication, deployment, animations, and advanced UI.
+				</p>
 
-		</a>
-	</div>
+				
+			</div>
+		</div>
+	);
 }
+
 export default About;

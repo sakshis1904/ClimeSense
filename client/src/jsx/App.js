@@ -13,12 +13,18 @@ export default function App() {
   return (
     <BrowserRouter>
       <nav className="NavBar">
-        <Link className = 'home' to="/">Home</Link>
-
-        <Link className = 'home' to="/dashboard">Dashboard</Link>
-        <Link className = 'home' to="/about">About</Link>
-        <Link className = 'home' to="/contact">Contact</Link>
-
+        <div className="nav-inner container">
+          <div className="nav-logo">
+            <div className="logo-dot" />
+            <div className="app-title">ClimeSense</div>
+          </div>
+          <div className="nav-links">
+            <Link className='home' to="/">Home</Link>
+            <Link className='home' to="/dashboard">Dashboard</Link>
+            <Link className='home' to="/about">About</Link>
+            <Link className='home' to="/contact">Contact</Link>
+          </div>
+        </div>
       </nav>
 
         <Route exact path="/dashboard" component={Dashboard} />

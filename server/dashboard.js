@@ -1,39 +1,17 @@
-const { MongoClient } = require("mongodb");
+// dashboard.js
+const { getDB } = require("./db");
 
-const url = "Enter your MongoDB url";
-const client = new MongoClient(url);
+async function ActiveUsers(Username) {
+  const db = await getDB();
+  const col = db.collection("ActiveUsers");
 
-async function ActiveUsers(Username, Password) {
-    try {
-        await client.connect();
+  const payload = {
+    Username,
+    timestamp: new Date()
+  };
 
-        const db = client.db('WeatherSenseDB');
-        const col1 = db.collection('LoginAuthentication');
-        const col2 = db.collection('ActiveUsers');
-
-
-        const query = { 'Username': Username, 'Password': Password};
-        const result = await col1.findOne(query);
-        delete result._id;
-
-        await col2.insertOne(result)
-
-        if (result) {
-            return 1;
-        } else {
-            return 0
-        }
-    }
-    finally {
-        await client.close();
-    }
-    
+  const res = await col.insertOne(payload);
+  return res.insertedId ? 1 : 0;
 }
-
-
-// (async () => {
-//     const a = await ActiveUsers();
-//     console.log(a);
-//   })();
 
 module.exports = { ActiveUsers };

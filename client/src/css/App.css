@@ -1,37 +1,37 @@
 .NavBar{
-    background-color: rgb(69, 102, 209);
     width: 100%;
-    /* color: white; */
-    height: 8vh;
+    height: 72px;
     display: flex;
     justify-content: center;
-    flex-direction: row;
     align-items: center;
     position: fixed;
-
+    top: 0;
+    left: 0;
+    z-index: 50;
+    background: linear-gradient(90deg, rgba(74,163,255,0.14), rgba(11,95,168,0.16));
+    box-shadow: 0 6px 18px rgba(2,24,40,0.12);
+    backdrop-filter: blur(8px);
 }
 
-.home{
-    margin-top: 0.5%;
-    color: white;
-    font-size: 1.5vw;
-    margin-right: 1%;
-    text-decoration: none;
-    width: 10%;
-    text-align: center;
-    border: 1px solid white;
+.nav-inner { display:flex; align-items:center; width:100%; max-width:1200px; padding:0 1rem; gap:1rem; }
+.nav-logo { display:flex; align-items:center; gap:0.6rem; color:var(--deep-sky); font-weight:800; font-size:1.1rem; text-decoration:none }
+.nav-logo .logo-dot { width:14px; height:14px; background:linear-gradient(90deg,var(--accent), #ff9f43); border-radius:50%; box-shadow: 0 6px 18px rgba(255,160,60,0.12) }
+.nav-links { margin-left:auto; display:flex; gap:0.8rem; align-items:center }
+ .nav-links .home { padding: 0.5rem 0.9rem; border-radius: 999px; font-weight:700; color: white; background: linear-gradient(90deg, var(--deep-sky), #094f86); border: 0; text-decoration:none; transition: transform .25s var(--anim-ease), box-shadow .25s var(--anim-ease), opacity .2s }
+.nav-links .home:hover { transform: translateY(-4px) scale(1.02); box-shadow: 0 18px 44px rgba(11,95,168,0.12); }
 
-    background-color: rgba(255, 166, 0, 0.84);
-    padding: 0.5vw ;
-    border-radius: 10px;
-    color: white;
-    text-shadow: 1px 1px rgba(0, 98, 255, 0.532);
-    font-weight: bold;
+.app-title { font-size: 1.25rem; color: var(--deep-sky); opacity:.98 }
 
+/* small floating sun accent */
+.hero-sun { width: 42px; height:42px; border-radius:50%; background: radial-gradient(circle at 40% 30%, #fff7e6, var(--accent)); box-shadow: 0 10px 38px rgba(255,179,104,0.16); transform: translateY(-2px); animation: floaty 8s ease-in-out infinite }
 
-}
+/* nav entrance */
+.NavBar { animation: slideUp .5s cubic-bezier(.2,.9,.2,1) both }
 
-.home:hover{
-    transform: scale(1.1);
-    border: 2px solid white;
+.nav-links .cta { background: var(--accent); color: #073b4c; padding: 0.5rem 1rem; border-radius: 999px; font-weight:800 } 
+.nav-links .cta:hover { opacity: 0.95 }
+
+@media (max-width: 720px) {
+    .nav-links { gap: 0.4rem }
+    .nav-logo { font-size: 0.95rem }
 }

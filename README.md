@@ -1,6 +1,6 @@
 <div align="center">
 
-# Weather Sense
+# ClimeSense
 
 </div>
 
@@ -115,7 +115,7 @@ If you have any feedback, please reach out to us at kunaalgupta@hotmail.com
 
 ## Installation
 
-Install WeatherSense with npm after cloning the project
+Install ClimeSense with npm after cloning the project
 
 ```bash
 npm Install
