@@ -73,6 +73,8 @@ npm Install
 
 [Axios](https://axios-http.com/)
 
+[Authentication](https://www.jwt.io/introduction)
+
 
 ## Features
 
