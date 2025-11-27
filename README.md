@@ -22,6 +22,12 @@ The backend is built using Node.js and Express.js and is responsible for handlin
 The backend exposes RESTful APIs that handle registration, login, weather search history, and communication with the third-party OpenWeatherMap API to fetch real-time weather data. Proper error handling, input validation, and secure request processing ensure reliability, data integrity, and a seamless connection between the frontend and backend.
 
 
+## Screenshots
+
+![WhatsApp Image 2025-11-28 at 00 29 17_4d19cc0a](https://github.com/user-attachments/assets/6d24692f-a0e0-4dfe-9874-a29f97412437)
+
+
+![WhatsApp Image 2025-11-28 at 00 29 33_6ec3ddfb](https://github.com/user-attachments/assets/c068a4f9-209b-4b0e-8952-e5b7707bbb1e)
 
 
 ## Authors
